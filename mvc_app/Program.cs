@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            //Add Service 
-            builder.Services.AddSingleton<IServiceProduct, ServiceProducts>();
+            //Add Service products Id
+            builder.Services.AddScoped<IServiceProduct, ServiceProducts>();
             builder.Services.AddDbContext<ProductContext>(
                 options =>
                 {
@@ -38,10 +38,6 @@ using Microsoft.EntityFrameworkCore;
                .AddEntityFrameworkStores<UserContext>();
         //MVC
         builder.Services.AddControllersWithViews();
-        builder.Services.AddAuthorization(options=>
-        {
-            options.AddPolicy("MyAdminRole", policy => policy.RequireRole("admin"));
-        });
             var app = builder.Build();
         app.UseRouting();//перекидывать будут на контролер Important include first
         app.UseAuthentication();//next
