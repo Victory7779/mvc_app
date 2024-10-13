@@ -1,0 +1,39 @@
+﻿@* <h1>Products</h1>
+<h2><a href="/products/details/{id}">Product</a></h2>
+<h2><a href="/products/create">Create</a></h2>
+<h2><a href="/products/update/{id}">Update</a></h2>
+<h2><a href="/products/delete/{id}">Delete</a></h2> *@
+@model IEnumerable<mvc_app.Models.Product>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Product";
+}
+<h3>Products</h3>
+<p>
+    <a href="/products/Create" class="btn btn-primary">Create</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            <th scope="col">Tools</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Description</td>
+                <td>
+                    <a href="@Url.Action("Update", new{Id=product.Id})" class="btn btn-warning">Update</a>
+                    <a href="@Url.Action("Details", new{Id=product.Id})" class="btn btn-info">Details</a>
+                    <a href="@Url.Action("Delete", new{Id=product.Id})" class="btn btn-dander">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

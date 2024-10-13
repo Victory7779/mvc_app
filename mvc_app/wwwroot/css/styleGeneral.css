@@ -1,0 +1,19 @@
+﻿header {
+    flex-direction: column;
+    width: 1920px;
+    height: 104px;
+    left: 10px;
+    gap: 0px;
+    border: 1px 0px 0px 0px;
+
+}
+#headerBlueDiv{
+    background-color:royalblue;
+    height:80%;
+}
+#headerPinkDiv {
+    background-color: pink;
+    height:20%;
+}
+body {
+}
