@@ -19,8 +19,13 @@ using mvc_app.Models;
             var products = await _serviceProduct.ReadAsync();
             return View(products);
         }
-        //Get: http://localhost:[port]/products/details/{id}
-        public async Task<ViewResult> Details(int id) => View( await _serviceProduct.GetByIdAsync(id));
+    //Get: http://localhost:[port]/products/details/{id}
+    public async Task<ViewResult> Details(int id)
+    {
+        var product = await _serviceProduct.GetByIdAsync(id);
+       // ViewBag.Name =
+        return View(product);
+    }
     //POST: http://localhost:[port]/products/create
     [HttpGet]
     [Authorize(Roles = "admin")]

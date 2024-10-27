@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +10,7 @@ namespace mvc_app.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]//Jwt
     public class APIProductsController : Controller
     {
         private readonly IServiceProduct? _serviceProduct;
@@ -34,7 +36,7 @@ namespace mvc_app.Controllers
         }
 
         // Создание нового поста (доступно только авторизованным пользователям)
-        [Authorize(Roles = "admin")]
+       // [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] Product product)
         {
@@ -43,7 +45,7 @@ namespace mvc_app.Controllers
             return Ok(productCreat);
         }
 
-        [Authorize(Roles = "admin")]
+      //  [Authorize(Roles = "admin")]
         [HttpPut]
         public async Task<IActionResult> UpdateProduct(int id,[FromBody] Product product)
         {
@@ -53,7 +55,7 @@ namespace mvc_app.Controllers
         }
 
         // Удаление поста (доступно только авторизованным пользователям)
-        [Authorize(Roles = "admin")]
+      //  [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
